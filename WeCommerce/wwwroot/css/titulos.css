@@ -1,0 +1,55 @@
+﻿.titles {
+    margin-right: 0;
+    margin-left: 0;
+    text-align: center;
+    margin-top: 10px;
+    background-color: #212529;
+    margin-bottom:10px
+}
+
+.titlesUser {
+    margin-right: 0;
+    margin-left: 0;
+    text-align: center;
+    margin-top: 10px;
+    background-color: darkorange;
+    margin-bottom: 10px;
+    width:auto
+
+}
+
+.titles-text-user {
+    padding: 5px;
+    font-family: Bungee Shade;
+    color: black
+}
+.titles-text {
+    padding: 5px;
+    font-family: Bungee Shade;
+    color: darkorange
+}
+
+a:link, a:visited, a:active {
+    text-decoration: none;
+}
+
+.btnstil {
+    margin-top: 10px;
+    margin-bottom: 10px
+}
+
+
+.wrap,
+.wrap2 {
+    width: 100px;
+    white-space: pre-wrap; /* CSS3 */
+    white-space: -moz-pre-wrap; /* Firefox */
+    white-space: -pre-wrap; /* Opera <7 */
+    white-space: -o-pre-wrap; /* Opera 7 */
+    word-wrap: break-word; /* IE */
+}
+
+.wrap {
+    border: 1px solid red;
+    height: auto;
+}

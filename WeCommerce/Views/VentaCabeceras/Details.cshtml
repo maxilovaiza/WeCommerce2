@@ -1,0 +1,103 @@
+﻿@model WeCommerce.Models.VentaCabecera
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "_LayoutOtros";
+}
+
+<div class="titles">
+    <h3 class="titles-text">Detalles de una Venta</h3>
+</div>
+<div>
+   
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.IdUser)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.IdUser)
+        </dd>
+    </dl>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <td>
+
+                Producto
+            </td>
+            <td>
+               Cantidad
+            </td>
+            <td>
+               Precio
+            </td>
+           
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var itemModel in Model.Details)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(item => itemModel.getProductos().Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(item => itemModel.Quntity)
+                </td>
+                <td>
+                    @Html.DisplayFor(item => itemModel.Price)
+                </td>
+               
+            </tr>
+
+
+        }
+        <tr>
+
+            <td>
+            </td>
+           
+            <td class="table-secondary">
+                Total
+            </td>
+            <td class="table-secondary">
+                $@Html.DisplayFor(model => model.totalventa)
+            </td>
+        </tr>
+
+    </tbody>
+
+
+</table>
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Editar</a> |
+    <a asp-action="Index">Volver a la Lista</a>
+    <button type="button" class="btn btn-warning mt-4 text-white" onclick="GoPdf(@Model.Id)">PDF</button>
+</div>
+
+
+
+<script>
+    function GoPdf(id) {
+       
+        
+            var idpdf = id;
+            
+        window.location = "/VentaCabeceras/Indexpdf?id=" + idpdf;
+
+
+
+        
+    }
+
+</script>

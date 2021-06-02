@@ -1,0 +1,42 @@
+﻿@model WeCommerce.Models.Marca
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "_LayoutOtros";
+}
+
+<div class="titles">
+    <h3 class="titles-text">Eliminar una Marca</h3>
+</div>
+
+<h3>Estas Seguro?</h3>
+<div>
+    <div>
+
+        <table class="table">
+            <thead class="table-dark">
+                <tr class="col-sm-2">
+                    <th>
+                        @Html.DisplayNameFor(model => model.Description)
+                    </th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="col-sm-10">
+                        @Html.DisplayFor(model => model.Description)
+                    </td>
+                </tr>
+
+            </tbody>
+
+        </table>
+    </div>
+    
+    <form asp-action="Delete" style="margin-top:10px">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+        <a asp-action="Index">Volver a la Lista</a>
+    </form>
+</div>

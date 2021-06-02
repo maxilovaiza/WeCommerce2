@@ -1,0 +1,37 @@
+﻿@model WeCommerce.Models.Marca
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "_LayoutOtros";
+}
+
+<div class="titles">
+    <h3 class="titles-text">Detalles de una Marca</h3>
+</div>
+
+<div>
+
+    <table class="table">
+        <thead class="table-dark">
+            <tr class="col-sm-2">
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="col-sm-10">
+                    @Html.DisplayFor(model => model.Description)
+                </td>
+            </tr>
+
+        </tbody>
+
+    </table>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Editar</a> |
+    <a asp-action="Index">Volver a la Lista</a>
+</div>

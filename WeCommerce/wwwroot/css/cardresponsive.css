@@ -1,0 +1,9 @@
+﻿@media (max-width: 700px) {
+    #description {
+        display: none;
+    }
+    #precios{
+        font-size:1vw 1vh;
+       
+    }
+}
