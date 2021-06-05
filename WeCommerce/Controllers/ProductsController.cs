@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.IO;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using WeCommerce.Data;
 using WeCommerce.Models;
 
@@ -23,27 +20,27 @@ namespace WeCommerce.Controllers
             _context = context;
             _hostEnvironment = hostEnvironment;
         }
-       
-        // GET: Products
-        [Authorize(Roles ="Admin")]
-        [AutoValidateAntiforgeryToken]
-        public  IActionResult Index(int idCategory,int idMarcas,string strFilter)
-        {
-           
 
-            ViewBag.Categorys = Helpers.Functions.GetCategorys(true);                     
+        // GET: Products
+        [Authorize(Roles = "Admin")]
+        [AutoValidateAntiforgeryToken]
+        public IActionResult Index(int idCategory, int idMarcas, string strFilter)
+        {
+
+
+            ViewBag.Categorys = Helpers.Functions.GetCategorys(true);
             ViewBag.Marcas = Helpers.Functions.GetMarca(true);
             if (idCategory > 0 && idMarcas == 0)
             {
                 return View(_context.Product.Where(p => p.CategoryId == idCategory).ToList());
-               
+
             }
             else
             {
                 if (idMarcas > 0 && idCategory == 0)
                 {
                     return View(_context.Product.Where(p => p.MarcaId == idMarcas).ToList());
-                    
+
                 }
                 else
                 {
@@ -59,12 +56,12 @@ namespace WeCommerce.Controllers
                     }
                     else
                     {
-                        return View(_context.Product.ToList()); 
+                        return View(_context.Product.ToList());
                     }
                 }
 
             }
-           
+
         }
 
         // GET: Products/Details/5

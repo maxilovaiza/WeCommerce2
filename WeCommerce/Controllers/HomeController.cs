@@ -1,11 +1,7 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
 using WeCommerce.Data;
 using WeCommerce.Models;
 
@@ -25,10 +21,10 @@ namespace WeCommerce.Controllers
 
 
 
-        
+
         public IActionResult Index()
         {
-            var products = _context.Product.Where(p => p.Id == 3 || p.Id == 4 || p.Id == 5);
+            var products = _context.Product.Where(p => p.Id == 1 || p.Id == 2 || p.Id == 3);
             if (User.IsInRole("Admin"))
             {
 
@@ -36,7 +32,7 @@ namespace WeCommerce.Controllers
 
 
             }
-                return View(products);
+            return View(products);
         }
 
 
@@ -44,7 +40,7 @@ namespace WeCommerce.Controllers
         {
             return View();
         }
-        
+
         public IActionResult Privacy()
         {
             return View();

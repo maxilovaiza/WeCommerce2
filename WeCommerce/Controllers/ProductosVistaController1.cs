@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WeCommerce.Data;
@@ -15,22 +13,22 @@ namespace WeCommerce.Controllers
         public ProductosVistaController1(ApplicationDbContext context)
         {
             _context = context;
-           
+
         }
 
 
 
         // GET: ProductosVistaController1
-        public async Task<IActionResult> Index(int? category, int?marca)
+        public async Task<IActionResult> Index(int? category, int? marca)
         {
             if (category == null)
             {
                 return View(await _context.Product.ToListAsync());
 
             }
-           
-            return View(await _context.Product.Where(p => p.CategoryId==category && p.MarcaId==marca).ToListAsync());
-            
+
+            return View(await _context.Product.Where(p => p.CategoryId == category && p.MarcaId == marca).ToListAsync());
+
         }
 
         // GET: ProductosVistaController1/Details/5

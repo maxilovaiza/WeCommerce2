@@ -1,5 +1,3 @@
-using System;
-
 namespace WeCommerce.Models
 {
     public class ErrorViewModel

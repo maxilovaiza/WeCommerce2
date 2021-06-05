@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WeCommerce.Data;
 
-namespace WeCommerce.Data.Migrations
+namespace WeCommerce.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210331182427_primea")]
-    partial class primea
+    [Migration("20210602022528_vuelta2")]
+    partial class vuelta2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -84,6 +84,10 @@ namespace WeCommerce.Data.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(256)")
                         .HasMaxLength(256);
@@ -135,6 +139,8 @@ namespace WeCommerce.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -238,6 +244,23 @@ namespace WeCommerce.Data.Migrations
                     b.ToTable("Category");
                 });
 
+            modelBuilder.Entity("WeCommerce.Models.Marca", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Marca");
+                });
+
             modelBuilder.Entity("WeCommerce.Models.Product", b =>
                 {
                     b.Property<int>("Id")
@@ -255,14 +278,17 @@ namespace WeCommerce.Data.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(150)")
-                        .HasMaxLength(150);
+                        .HasColumnType("nvarchar(700)")
+                        .HasMaxLength(700);
 
                     b.Property<string>("ImageName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("MarcaId")
+                        .HasColumnType("int");
+
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,4)");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -316,6 +342,25 @@ namespace WeCommerce.Data.Migrations
                     b.HasIndex("VentaCabeceraId");
 
                     b.ToTable("VentasDetalles");
+                });
+
+            modelBuilder.Entity("WeCommerce.Models.ApplicationUser", b =>
+                {
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
+
+                    b.Property<string>("Apellido")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Calle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Localidad")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Nombre")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasDiscriminator().HasValue("ApplicationUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

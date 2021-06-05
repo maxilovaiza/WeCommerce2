@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using System.Threading.Tasks;
 using WeCommerce.Data;
 
 namespace WeCommerce.Models
@@ -20,7 +19,7 @@ namespace WeCommerce.Models
 
         public DateTime Date { get; set; } = DateTime.Now;
 
-        public String IdUser  { get; set; }
+        public String IdUser { get; set; }
 
         [NotMapped]
         public decimal totalventa { get; set; }
@@ -28,5 +27,7 @@ namespace WeCommerce.Models
         public List<VentaDetalle> Details { get; set; }
         [NotMapped]
         public List<Product> Products { get { return context.Product.ToList(); } }
+        [NotMapped]
+        public List<ApplicationUser> Users { get { return context.applicationUsers.ToList(); } }
     }
 }

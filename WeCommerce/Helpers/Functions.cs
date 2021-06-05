@@ -1,17 +1,14 @@
 ﻿
 using Microsoft.AspNetCore.Mvc.Rendering;
-using WeCommerce.Data;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using WeCommerce.Data;
 using WeCommerce.Models;
 
 namespace WeCommerce.Helpers
 {
     public static class Functions
     {
-        public static SelectList GetCategorys(bool  IncluyeTodas=false)
+        public static SelectList GetCategorys(bool IncluyeTodas = false)
         {
             var dbContext = new ApplicationDbContext();
             var lstCategory = dbContext.Category.ToList();

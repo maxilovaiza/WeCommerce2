@@ -1,10 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 using WeCommerce.Data;
 
 namespace WeCommerce.Models
@@ -12,8 +7,8 @@ namespace WeCommerce.Models
     public class Product
     {
         private ApplicationDbContext context;
-      
-      
+
+
 
         [Key]
         public int Id { get; set; }
@@ -33,7 +28,7 @@ namespace WeCommerce.Models
         [MaxLength(20)]
         public string Code { get; set; }
 
-        [Column(TypeName ="decimal(18,2)")]
+        [Column(TypeName = "decimal(18,2)")]
         [Display(Name = "Precio")]
         [Required(ErrorMessage = "El precio es requerido")]
 
@@ -52,7 +47,7 @@ namespace WeCommerce.Models
 
 
 
-       
+
         //poner el nombre envez del id
         //public Category GetCategory()
         //{

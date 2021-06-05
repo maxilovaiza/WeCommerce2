@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Rotativa.AspNetCore;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using WeCommerce.Data;
 using WeCommerce.Models;
 
@@ -15,12 +15,12 @@ namespace WeCommerce.Controllers
 {
     public class VentaCabecerasController : Controller
     {
-       
+        private readonly ApplicationUser _user;
         private readonly ApplicationDbContext _context;
 
         public VentaCabecerasController(ApplicationDbContext context)
         {
-            
+
             _context = context;
         }
 
@@ -45,21 +45,21 @@ namespace WeCommerce.Controllers
 
             return new ViewAsPdf("Indexpdf", ventaCabecera)
             {
-                
+
             };
         }
         // GET: VentaCabeceras
-        [Authorize(Roles ="Admin")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
             if (User.IsInRole("Admin"))
             {
                 return View(await _context.VentaCabecera.ToListAsync());
             }
-            return View(await _context.VentaCabecera.Where(p=>p.IdUser==User.Identity.Name).ToListAsync());
+            return View(await _context.VentaCabecera.Where(p => p.IdUser == User.Identity.Name).ToListAsync());
         }
-         
-       
+
+
 
         // GET: VentaCabeceras/Usuario
         public async Task<IActionResult> IndexUsuario()
@@ -81,11 +81,12 @@ namespace WeCommerce.Controllers
             {
                 return NotFound();
             }
-            ventaCabecera.Details = _context.VentasDetalles.Where(vd => vd.VentaCabeceraId == id ).ToList();
+            ventaCabecera.Details = _context.VentasDetalles.Where(vd => vd.VentaCabeceraId == id).ToList();
 
             if (ventaCabecera.Details == null)
                 ventaCabecera.Details = new List<VentaDetalle>();
-            
+
+
             ventaCabecera.totalventa = ventaCabecera.Details.Sum(p => p.Price * p.Quntity);
 
 
@@ -132,7 +133,7 @@ namespace WeCommerce.Controllers
             return View(ventacabecera);
         }
 
-        private static List<VentaDetalle> GetDetails()
+        private List<VentaDetalle> GetDetails()
         {
             var lstVentaDetalle = new List<VentaDetalle>();
 
@@ -143,6 +144,7 @@ namespace WeCommerce.Controllers
                 ventaDetalle.ProductId = item.IdProducts;
                 ventaDetalle.Quntity = item.Cantidad;
                 ventaDetalle.Price = item.Price;
+                ventaDetalle.IdUsuario = User.Identity.Name;
                 lstVentaDetalle.Add(ventaDetalle);
             }
 
@@ -156,26 +158,23 @@ namespace WeCommerce.Controllers
         public async Task<IActionResult> Create([Bind("Id,Date,IdUser,Details")] VentaCabecera ventaCabecera)
         {
             ventaCabecera.Details = GetDetails();
-            if (ModelState.IsValid && ListProducts.Count>0)
+            if (ModelState.IsValid && ListProducts.Count > 0)
             {
-               
+
                 if (User.Identity.IsAuthenticated)
                 {
-                   
-
-
-
-                    var Usuario = User.Identity.Name;
-                    ventaCabecera.IdUser = Usuario;
+                    var nombre = (from s in _context.applicationUsers
+                                  where s.UserName == User.Identity.Name
+                                  select s.Nombre).FirstOrDefault();
+                    ventaCabecera.IdUser = nombre;
                     _context.Add(ventaCabecera);
-                    
                     await _context.SaveChangesAsync();
                     ListProducts = new List<WeCartTemp>();
                     return RedirectToAction("IndexUsuario", ventaCabecera);
                 }
-              
+
             }
-            
+
             return RedirectToAction("Create");
         }
 
@@ -253,7 +252,7 @@ namespace WeCommerce.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var ventaDetalles =  _context.VentasDetalles.Where(p=>p.VentaCabeceraId==id).ToList();
+            var ventaDetalles = _context.VentasDetalles.Where(p => p.VentaCabeceraId == id).ToList();
             foreach (var item in ventaDetalles)
             {
                 _context.VentasDetalles.Remove(item);
@@ -272,35 +271,35 @@ namespace WeCommerce.Controllers
 
 
         private static List<WeCartTemp> ListProducts;
-        public WeCartTemp AddProdCarrito(int IdProduct,int cantidad)
+        public WeCartTemp AddProdCarrito(int IdProduct, int cantidad)
         {
-            if (ListProducts==null)
+            if (ListProducts == null)
             {
                 ListProducts = new List<WeCartTemp>();
             }
             var productInList = ListProducts.Where(p => p.IdProducts == IdProduct).FirstOrDefault();
-            if (productInList!=null)
+            if (productInList != null)
             {
-                productInList.Cantidad=productInList.Cantidad + cantidad;
+                productInList.Cantidad = productInList.Cantidad + cantidad;
             }
             else
             {
-                var produts = _context.Product.Where(p=> p.Id==IdProduct).FirstOrDefault();
-                productInList = new WeCartTemp() { IdProducts = IdProduct,Cantidad = cantidad,Price=produts.Price};
+                var produts = _context.Product.Where(p => p.Id == IdProduct).FirstOrDefault();
+                productInList = new WeCartTemp() { IdProducts = IdProduct, Cantidad = cantidad, Price = produts.Price };
 
                 ListProducts.Add(productInList);
             }
-            productInList.TotalProducto = _context.Product.Where(p=>p.Id==IdProduct).FirstOrDefault().Price*productInList.Cantidad;
-            
-            var ret = ListProducts.Where(p=>p.IdProducts==IdProduct).FirstOrDefault();
-            
+            productInList.TotalProducto = _context.Product.Where(p => p.Id == IdProduct).FirstOrDefault().Price * productInList.Cantidad;
+
+            var ret = ListProducts.Where(p => p.IdProducts == IdProduct).FirstOrDefault();
+
 
             return ret;
         }
 
         public decimal GetTotalImport()
         {
-            return ListProducts.Sum(t=>t.TotalProducto);
+            return ListProducts.Sum(t => t.TotalProducto);
 
 
         }
@@ -310,19 +309,19 @@ namespace WeCommerce.Controllers
             {
                 return 0;
             }
-            return ListProducts.Where(t => t.IdProducts==t.IdProducts).Count();
+            return ListProducts.Where(t => t.IdProducts == t.IdProducts).Count();
         }
-        public  bool DeleteProducto(int idproducto)
+        public bool DeleteProducto(int idproducto)
         {
             foreach (var item in ListProducts)
             {
-                
+
                 ListProducts.Where(p => p.IdProducts == idproducto).FirstOrDefault();
                 ListProducts.Remove(item);
-                 _context.SaveChangesAsync();
+                _context.SaveChangesAsync();
                 return true;
             }
-            
+
             return true;
 
         }

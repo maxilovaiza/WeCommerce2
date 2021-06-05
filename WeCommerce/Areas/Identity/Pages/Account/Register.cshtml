@@ -40,6 +40,16 @@
 
                                         <div asp-validation-summary="All" class="text-danger"></div>
                                         <div class="form-group">
+                                            <label asp-for="Input.Nombre" class="form-control-label text-muted">Nombre</label>
+                                            <input asp-for="Input.Nombre" class="form-control text-dark" id="email" placeholder="Nombre" />
+                                            <span asp-validation-for="Input.Nombre" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="Input.Apellido" class="form-control-label text-muted">Apellido</label>
+                                            <input asp-for="Input.Apellido" class="form-control text-dark" id="email" placeholder="Apellido" />
+                                            <span asp-validation-for="Input.Apellido" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
                                             <label asp-for="Input.Email" class="form-control-label text-muted">Email</label>
                                             <input asp-for="Input.Email" class="form-control text-dark" id="email" placeholder="Email" />
                                             <span asp-validation-for="Input.Email" class="text-danger"></span>

@@ -1,14 +1,11 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using WeCommerce.Models;
 using Microsoft.Extensions.Configuration;
+using WeCommerce.Models;
 
 namespace WeCommerce.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -23,6 +20,7 @@ namespace WeCommerce.Data
         }
 
 
+
         private string connectionString;
         private void InitContext()
         {
@@ -34,6 +32,7 @@ namespace WeCommerce.Data
         }
         protected override void OnConfiguring(DbContextOptionsBuilder options) => options.UseSqlServer(connectionString);
 
+        public DbSet<ApplicationUser> applicationUsers { get; set; }
         public DbSet<WeCommerce.Models.Product> Product { get; set; }
         public DbSet<WeCommerce.Models.Category> Category { get; set; }
         public DbSet<WeCommerce.Models.VentaCabecera> VentaCabecera { get; set; }
@@ -42,4 +41,5 @@ namespace WeCommerce.Data
 
         public DbSet<WeCommerce.Models.Marca> Marca { get; set; }
     }
+
 }
