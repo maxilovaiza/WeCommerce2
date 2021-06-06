@@ -54,8 +54,20 @@
     border-radius: 0;
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
-    
-    
+@media(max-width:1900px){
+    #navegacionarriba {
+        display: none
+    }
+}
+
+@media (max-width:769px) {
+    #navegacion {
+        display:none;
+    }
+    #navegacionarriba {
+        display: inline
+    }
+}   
     
     
     

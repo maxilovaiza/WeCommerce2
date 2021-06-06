@@ -53,3 +53,12 @@ a:link, a:visited, a:active {
     border: 1px solid red;
     height: auto;
 }
+@media(max-width:1200px) {
+    .titles-text-user {
+       font-size:2vw;
+
+    }
+    .titles-text-user {
+        width:100%;
+    }
+}

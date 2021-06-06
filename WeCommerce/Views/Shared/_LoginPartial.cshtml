@@ -2,7 +2,8 @@
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 <link href="~/css/navupper.css" rel="stylesheet" />
-
+<link href="~/icofont/icofont.min.css" rel="stylesheet" />
+<link href="~/css/Nuevanav.css" rel="stylesheet" />
 @if (SignInManager.IsSignedIn(User))
 {
     <ul class="standard_dropdown main_nav_dropdown ">
@@ -21,11 +22,13 @@
         }
         else
         {
-        <div class="top_bar_user">
-            <div class="user_icon"><img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1560918647/user.svg" alt=""></div>
-            <div><a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register" style="color:black">Register</a></div>
-            <div><a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Sign in</a></div>
-        </div>
+
+<div class="row align-items-center">
+    <div><a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register" style="color:black"><i class="icofont-ui-user"></i>Registrarse</a></div>
+    <div><a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login"><i class="icofont-login"></i>Login</a></div>
+</div>
+            
+      
 
         }
 

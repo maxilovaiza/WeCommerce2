@@ -1,9 +1,9 @@
 ﻿@model WeCommerce.Models.Product
 
-@{
-    ViewData["Title"] = "Details";
-
-}
+@{ ViewData["Title"] = "Details"; }
+<script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+        crossorigin="anonymous"></script>
 <link href="~/css/Detalles.css" rel="stylesheet" />
 <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
 <!-- CSS only -->
@@ -18,17 +18,35 @@
     <div class="container" style="margin:auto">
 
         <div class="col-12">
+            <!-- Header -->
+            <div class="row mb-1" id="navegacionarriba">
+
+                <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                    <ol class="breadcrumb" style="margin-top:10px;margin-bottom:10px;background:#ffffff">
+                        <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Inicio</a></li>
+                        <li class="breadcrumb-item"><a asp-controller="ProductosVistaController1" asp-action="Index">Productos</a></li>
+                        <li class="breadcrumb-item active">Accessories</li>
+                    </ol>
+                </nav>
+
+
+
+            </div>
+
+            <!-- Heading -->
+            <h3 class="mb-2" id="navegacionarriba">@Html.DisplayFor(model => model.Title)</h3>
+
             <div class="row">
                 <div class="col-12 col-md-6" style="margin-top: 10px;margin-bottom: 10px">
                     <!-- Card -->
                     <div class="card" style="height: 100%">
-                        <div class="image_selected" style="margin:auto"><img src="@("~/Files/Img/Product/"+Model.ImageName)" asp-append-version="true" width="250" height="250" /></div>
+                        <div class="image_selected " style="margin:auto"><img class="img-fluid" src="@("~/Files/Img/Product/"+Model.ImageName)" asp-append-version="true" width="250" height="250" /></div>
                     </div>
                 </div>
                 <div class="col-12 col-md-6 pl-lg-10 " style="margin-top: 10px;margin-bottom: 10px;background: #ffffff;padding:20px">
 
                     <!-- Header -->
-                    <div class="row mb-1">
+                    <div class="row mb-1" id="navegacion">
 
                         <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                             <ol class="breadcrumb" style="margin-top:10px;margin-bottom:10px;background:#ffffff">
@@ -43,7 +61,7 @@
                     </div>
 
                     <!-- Heading -->
-                    <h3 class="mb-2">@Html.DisplayFor(model => model.Title)</h3>
+                    <h3 class="mb-2" id="navegacion">@Html.DisplayFor(model => model.Title)</h3>
 
                     <!-- Price -->
                     <div class="mb-7">

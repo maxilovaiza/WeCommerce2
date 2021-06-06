@@ -4,204 +4,88 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Wecommerce</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     
-   
-   
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" rel="stylesheet">
-    <link href="~/css/site.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <link href="~/css/NavResposive.css" rel="stylesheet" />
     <link href='https://fonts.googleapis.com/css?family=Bungee Shade' rel='stylesheet'>
-    <link href="~/css/footer.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
-    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
-    <link href="~/css/Nuevanav.css" rel="stylesheet" />
+    
 
 </head>
 <body class="bg-light" style="overflow-x: hidden">
+    <header>
+        <!-- Barra Superior -->
+        <nav class="navbar navbar-expand-lg navbar-light " id="NavSuperior">
+            <div class="container-fluid align-items-center">
+                <a class="navbar-brand" id="tituloBrand" asp-action="Index" asp-controller="Home" ><i class="icofont-cart-alt"></i>WeCommerce</a>
 
-    <header class="headermain">
-        <!-- Top Bar -->
-        <div class="top_bar " style="background: #ff8c00;border:hidden">
-            <div class="container">
-                <div class="row">
-                    <div class="col d-flex flex-row">
-                        <div class="top_bar_contact_item">
-                            <div class="top_bar_icon" style="color:white"><img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1560918577/phone.png" alt=""></div><a style="color:black">+0353 154 123123</a>
-                        </div>
-                        <div class="top_bar_contact_item">
-                            <div class="top_bar_icon" style="color:white"><img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1560918597/mail.png" alt=""></div><a style="color:black" href="mailto:weommerce@gmail.com">weommerce@gmail.com</a>
-                        </div>
-                        <div class="top_bar_content ml-auto">
-                            <partial name="_LoginPartial" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Header Main -->
-        <div class="header_main" style="background: #ff8c00">
-            <div class="container">
-                <div class="row">
-                    <!-- Logo -->
-                    <div class="col-lg-3 col-sm-3 col-3 order-1">
-                        <div class="logo_container">
-                            <div class="logo"><a href="#" style="font-family: Bungee Shade;color:black">WeCommer</a></div>
-                        </div>
-                    </div>
-                    <!-- Search -->
-                    <div class="col-lg-6 col-12 order-lg-2 order-3 text-lg-left text-right">
-                        <div class="header_search">
-                            <div class="header_search_content">
-                                <div class="header_search_form_container">
-                                    <form action="#" class="header_search_form clearfix" style="border:hidden">
-                                        <input type="search" required="required" class="header_search_input" placeholder="Search for products...">
-                                        <button type="submit" class="header_search_button trans_300" value="Submit" style="border:1px solid"><i class="bi bi-search"></i></button>
-                                    </form>
-                                </div>
+                
+                    <div class="cart">
+                        <div class="cart_container d-flex flex-row align-items-center justify-content-end" style="width:150px">
+                            <div class="cart_icon">
+                                <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1560918704/cart.png" alt="">
+                                <div class="cart_count"><span id="CantCarrito">0</span></div>
+                            </div>
+                            <div class="cart_content">
+                                <div class="cart_text"><a asp-controller="VentaCabeceras" asp-action="Create" style="text-decoration: none;">Carrito</a></div>
+
                             </div>
                         </div>
                     </div>
-                    <!-- Wishlist -->
-                    <div class="col-lg-3 col-9 order-lg-3 order-2 text-lg-left text-right">
-                        <div class="wishlist_cart d-flex flex-row align-items-center justify-content-end">
-                             <!-- Cart -->
-                            <div class="cart">
-                                <div class="cart_container d-flex flex-row align-items-center justify-content-end">
-                                    <div class="cart_icon">
-                                        <img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1560918704/cart.png" alt="">
-                                        <div class="cart_count"><span id="CantCarrito">0</span></div>
-                                    </div>
-                                    <div class="cart_content">
-                                        <div class="cart_text"><a asp-controller="VentaCabeceras" asp-action="Create">Carrito</a></div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div id="loginpartialup">
+                        <partial name="_LoginPartial" />
                     </div>
-                </div>
-            </div>
-        </div>
-        <!-- Main Navigation -->
-        <nav class="main_nav" style="background: #ff8c00;border: hidden">
-            <div class="container">
-                <div class="row">
-                    <div class="col">
-                        <div class="main_nav_content d-flex flex-row">
 
-                            <!-- Main Nav Menu -->
-                            <div class="main_nav_menu " >
-                                <ul class="standard_dropdown main_nav_dropdown  " >
-                                    <li><a style="color:black" asp-action="Index" asp-controller="Home">Inicio<i class="fas fa-chevron-down text-light"></i></a></li>
+               
+                
 
-
-                                    <li class="hassubs" >
-                                        <a style="color:black">Paginas<i class="fas fa-chevron-down"></i></a>
-                                        <ul style="z-index: 1" >
-                                            <li><a asp-controller="VentaCabeceras" asp-action="Create">Carrito<i class="fas fa-chevron-down"></i></a></li>
-
-
-
-                                            <li><a asp-controller="ProductosVistaController1" asp-action="Index">Productos<i class="fas fa-chevron-down"></i></a></li>
-
-                                        </ul>
-                                    </li>
-                                    @if (User.Identity.IsAuthenticated)
-                                    {
-                                        <li><a style="color:black" asp-action="IndexUsuario" asp-controller="VentaCabeceras">MisCompras<i class="fas fa-chevron-down text-light"></i></a></li>
-                                    }
-
-                                </ul>
-                            </div>
-                            <!-- Menu Trigger -->
-                            <div class="menu_trigger_container" >
-                                <div class="collapse" id="navbarToggleExternalContent">
-                                    <div class=" p-4" style="background: #ff8c00">
-                                        <ul >
-                                            <li><a style="color:white" asp-action="Index" asp-controller="Home">Inicio</a></li>
-                                            <li><a asp-controller="VentaCabeceras" asp-action="Create">Carrito</a></li>
-                                            <li><a asp-controller="ProductosVistaController1" asp-action="Index">Productos</a></li>
-                                             @if (User.Identity.IsAuthenticated)
-                                    {
-                                        <li><a style="color:white" asp-action="IndexUsuario" asp-controller="VentaCabeceras">MisCompras</a></li>
-                                    }
-                                        </ul>
-                                       
-                                    </div>
-                                </div>
-                                <nav class="navbar navbar-dark " style="background: #ff8c00">
-                                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="true" aria-label="Toggle navigation">
-                                        <span class="navbar-toggler-icon"></span>
-                                    </button>
-                                </nav>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
             </div>
         </nav>
+        <!-- Barra Inferior -->
+        <nav class="navbar navbar-expand-lg navbar-light " id="NavInferior">
+            <div class="container-fluid">
 
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" asp-action="Index" asp-controller="Home"><i class="icofont-ui-home" style="margin-right:2px"></i>Home</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="icofont-page" style="margin-right:2px"></i>
+                                Paginas
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" asp-controller="VentaCabeceras" asp-action="Create">Carrito</a></li>
+                                <li><a class="dropdown-item" asp-controller="ProductosVistaController1" asp-action="Index">Productos</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                    <li><a class="dropdown-item" asp-action="IndexUsuario" asp-controller="VentaCabeceras">Mis Compras</a></li>
+}
+
+                            </ul>
+                        </li>
+
+                    </ul>
+                    <div id="loginpartialAbajo">
+                        <partial name="_LoginPartial" />
+                    </div>
+                </div>
+
+            </div>
+        </nav>
     </header>
-    <div class="bodycontainer">
-        <main role="main" class="pb-3" style="margin-bottom: 100px;z-index: 100!important ">
+
+    <div class="bodycontainer" id="main">
+        <main role="main" class="pb-3" style="margin-bottom: 100px;z-index: 100!important " >
             @RenderBody()
         </main>
     </div>
 
-
-
-    <footer class="section-footer border-top">
-        <div class="container-fluid" id="container-fluid">
-            <section class="footer-top padding-y">
-                <div class="row">
-                    <aside class="col-md-4">
-                        <article class="mr-3">
-                            <div class="logo"><a href="#" style="font-family: Bungee Shade;color:orange">WeCommer</a></div>
-                            </article>
-                    </aside>
-                    <aside class="col-sm-3 col-md-2">
-                        <h6 class="title">About</h6>
-                        <ul class="list-unstyled">
-                            <li> <a href="#" data-abc="true">About us</a></li>
-                            <li> <a href="#" data-abc="true">Services</a></li>
-                            <li> <a href="#" data-abc="true">Terms & Condition</a></li>
-                            <li> <a href="#" data-abc="true">Our Blogs</a></li>
-                        </ul>
-                    </aside>
-                    <aside class="col-sm-3 col-md-2">
-                        <h6 class="title">Services</h6>
-                        <ul class="list-unstyled">
-                            <li> <a href="#" data-abc="true">Help center</a></li>
-                            <li> <a href="#" data-abc="true">Money refund</a></li>
-                            <li> <a href="#" data-abc="true">Terms and Policy</a></li>
-                            <li> <a href="#" data-abc="true">Open dispute</a></li>
-                        </ul>
-                    </aside>
-                    <aside class="col-sm-3 col-md-2">
-                        <h6 class="title">For users</h6>
-                        <ul class="list-unstyled">
-                            <li> <a href="#" data-abc="true"> User Login </a></li>
-                            <li> <a href="#" data-abc="true"> User register </a></li>
-                            <li> <a href="#" data-abc="true"> Account Setting </a></li>
-                            <li> <a href="#" data-abc="true"> My Orders </a></li>
-                        </ul>
-                    </aside>
-                   
-                </div>
-            </section>
-            <section class="footer-copyright border-top">
-                <p class="float-left text-muted"> © 2021 WeCommer All rights resetved </p>
-                <p target="_blank" class="float-right text-muted"> <a href="#" data-abc="true">Privacy &amp; Cookies</a> &nbsp; &nbsp; <a href="#" data-abc="true">Accessibility</a> </p>
-            </section>
-        </div>
-    </footer>
-
-
-
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js">
-    </script>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/js/carousel.js"></script>
     <script src="https://kit.fontawesome.com/b0550c7057.js" crossorigin="anonymous"></script>
@@ -211,14 +95,11 @@
                 GetTotalCarrito();
             });
 
-        $(document).on('click.nav', '.navbar-collapse.in', function (e) {
-            if ($(e.target).is('a')) {
-                $(this).removeClass('in').addClass('collapse');
-            }
-        });
-        
+       
+
     </script>
     @RenderSection("Scripts", required: false)
+    
 </body>
 </html>
 

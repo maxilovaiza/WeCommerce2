@@ -5,3 +5,37 @@
     font-weight: 400;
     text-align: left;
 }
+
+@media(max-width:1900px) {
+
+   
+
+    #cabecera {
+        display: none
+    }
+    #botones{
+        display:none
+    }
+    #obj1 {
+        display: none
+    }
+    #acordionRes {
+        display: none
+    }
+}
+@media(max-width:769px) {
+
+    #filtro{
+        display:none
+    }
+    #cabecera{
+        display:inline
+    }
+    #botones {
+        display: block
+    }
+    #acordionRes {
+        display: block
+    }
+
+}
