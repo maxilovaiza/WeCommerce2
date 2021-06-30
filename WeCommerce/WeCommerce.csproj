@@ -8,6 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\ProductosUsuario\**" />
+    <Content Remove="Views\ProductosUsuario\**" />
+    <EmbeddedResource Remove="Views\ProductosUsuario\**" />
+    <None Remove="Views\ProductosUsuario\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="bootstrap" Version="5.0.1" />
     <PackageReference Include="bootstrap.sass" Version="5.0.1" />
     <PackageReference Include="mercadopago-sdk" Version="2.0.0" />
@@ -27,7 +34,6 @@
 
   <ItemGroup>
     <Folder Include="Rotativa\" />
-    <Folder Include="Views\ProductosUsuario\" />
     <Folder Include="wwwroot\Files\Img\Product\" />
   </ItemGroup>
 
